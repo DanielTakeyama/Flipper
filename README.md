@@ -57,3 +57,8 @@ README.md                  // Documentação do jogo
 
 ### Licença
 Este projeto está sob a Licença MIT.
+
+
+### Melhorias
+
+- Futuramente colocar no **src/entities/entity.js** um id retornado do banco de dados;
