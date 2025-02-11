@@ -1,5 +1,5 @@
 export class ImageComponent{
-    constructor(src, x, y){
+    constructor(src){
         this.image = new Image();
         this.image.src = src;
     }

@@ -14,14 +14,15 @@ export class PlayerManager{
     spawn(ctx){
         const imageComponent = this.manager.getComponent("ImageComponent");
         const position = this.manager.getComponent("Position");
-        
+        const managerWidth = 150;
+        const managerHeight = 150;
         if(imageComponent && position){//Verifica se o componente da imagem e da posição existe
 
             if(imageComponent.image.complete){//Caso a imagem já tenha sido carregada, desenha ela imediatamente na tela
-                ctx.drawImage(imageComponent.image, position.x, position.y, 15, 15);
+                ctx.drawImage(imageComponent.image, position.x, position.y, managerWidth, managerHeight);
             } else {
                 imageComponent.image.onload = ()=>{//Caso a imagem não tenha sido carregada, espere ela terminar de carregar e após isso desenha ela na tela
-                    ctx.drawImage(imageComponent.image, position.x, position.y, 15, 15);
+                    ctx.drawImage(imageComponent.image, position.x, position.y, managerWidth, managerHeight);
                 }
             }
 
