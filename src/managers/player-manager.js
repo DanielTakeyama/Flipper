@@ -1,13 +1,16 @@
 import { Entity } from '../entities/entity-object.js';
 import { Position } from '../ecm-components/position.js';
 import { Gravity } from '../ecm-components/gravity.js';
+import { Velocity } from '../ecm-components/velocity.js';
+
 import { ImageComponent } from '../ecm-components/image-component.js';
 
 export class PlayerManager{
     constructor(){
         this.manager = new Entity();
         this.manager.addComponent(new Position(50,50));
-        this.manager.addComponent(new Gravity(0.5));
+        this.manager.addComponent(new Gravity(5));
+        this.manager.addComponent(new Velocity(10));
         this.manager.addComponent(new ImageComponent("../../assets/images/pinguin.png"));
     }
 
@@ -29,5 +32,12 @@ export class PlayerManager{
         } else {
             console.log("ERRO: A Imagem ou a Posição do PlayerManager não foi definida!");
         }
+    }
+
+    update(){
+        const gravidade = this.manager.getComponent("Gravity").gravidade;
+        const position = this.manager.getComponent("Position");
+
+        position.y +=  gravidade;
     }
 }
