@@ -9,7 +9,15 @@ canvas.height = window.innerHeight;
 
 const player = new PlayerManager();
 const cenario = new ScenaryManager();
+
 let gameOver = false;
+
+document.addEventListener("keydown", (event)=>{
+    if(event.code === "Space"){
+        const playerPos = player.manager.getComponent("Position");
+        playerPos.y -= 200;
+    }
+});
 
 function initialize(ctx, canvas){
     ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -17,14 +25,16 @@ function initialize(ctx, canvas){
     cenario.draw(ctx, canvas.width, canvas.height);
     player.spawn(ctx);
     player.update();
-    
-    if(player.manager.components.Position.y === 700){//Se o player encostar no chão acaba o jogo
+    const playerPos = player.manager.getComponent("Position");    
+
+    if(playerPos.y >= 700){//Se o player encostar no chão acaba o jogo
         gameOver = true;
     }
 
     if(!gameOver){//Enquanto o player não colidiu com o chão e nem com nenhum obstaculo o jogo continue.
         requestAnimationFrame(()=> initialize(ctx, canvas));
     }
+    console.log(playerPos.y)
 }
 
 initialize(ctx, canvas);
