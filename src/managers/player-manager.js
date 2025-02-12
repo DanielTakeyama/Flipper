@@ -11,14 +11,14 @@ export class PlayerManager{
         this.manager.addComponent(new Position(50,50));
         this.manager.addComponent(new Gravity(0.5));
         this.manager.addComponent(new Velocity(5));
-        this.manager.addComponent(new ImageComponent("../../assets/images/pinguin.png"));
+        this.manager.addComponent(new ImageComponent("../../assets/images/flappybird.png"));
     }
 
     spawn(ctx){
         const imageComponent = this.manager.getComponent("ImageComponent");
         const position = this.manager.getComponent("Position");
-        const managerWidth = 150;
-        const managerHeight = 150;
+        const managerWidth = 70;
+        const managerHeight = 60;
         if(imageComponent && position){//Verifica se o componente da imagem e da posição existe
 
             if(imageComponent.image.complete){//Caso a imagem já tenha sido carregada, desenha ela imediatamente na tela
