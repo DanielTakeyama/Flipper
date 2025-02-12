@@ -15,7 +15,9 @@ let gameOver = false;
 document.addEventListener("keydown", (event)=>{
     if(event.code === "Space"){
         const playerPos = player.manager.getComponent("Position");
-        playerPos.y -= 200;
+        const velocidade = player.manager.getComponent("Velocity");
+        velocidade.velocity = -7;
+        playerPos.y -= 50;
     }
 });
 
@@ -27,7 +29,7 @@ function initialize(ctx, canvas){
     player.update();
     const playerPos = player.manager.getComponent("Position");    
 
-    if(playerPos.y >= 700){//Se o player encostar no chão acaba o jogo
+    if(playerPos.y >= 700 || playerPos.y <= -120){//Se o player encostar no chão acaba o jogo
         gameOver = true;
     }
 

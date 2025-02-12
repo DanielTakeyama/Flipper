@@ -9,8 +9,8 @@ export class PlayerManager{
     constructor(){
         this.manager = new Entity();
         this.manager.addComponent(new Position(50,50));
-        this.manager.addComponent(new Gravity(5));
-        this.manager.addComponent(new Velocity(10));
+        this.manager.addComponent(new Gravity(0.5));
+        this.manager.addComponent(new Velocity(5));
         this.manager.addComponent(new ImageComponent("../../assets/images/pinguin.png"));
     }
 
@@ -35,9 +35,11 @@ export class PlayerManager{
     }
 
     update(){
-        const gravidade = this.manager.getComponent("Gravity").gravidade;
+        const gravidade = this.manager.getComponent("Gravity");
+        const velocidade = this.manager.getComponent("Velocity");
         const position = this.manager.getComponent("Position");
 
-        position.y +=  gravidade;
+        velocidade.velocity += gravidade.gravity;
+        position.y +=  velocidade.velocity;
     }
 }
