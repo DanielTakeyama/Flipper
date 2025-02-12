@@ -33,6 +33,14 @@ document.addEventListener("keydown", (event)=>{
 
 //Funções
 
+function checkColision(playerX, playerY, obstaculoX, obstaculoY){
+    if(playerX >= obstaculoX){
+
+    }
+}
+
+
+
 function initialize(ctx, canvas){
     ctx.clearRect(0,0, canvas.width, canvas.height);//Limpa todo o canvas
     
