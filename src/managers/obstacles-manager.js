@@ -12,14 +12,16 @@ export class ObstaclesManager{
         this.manager.addComponent(new ImageComponent("../../assets/images/bottompipe.png"));
         this.obstaclePosition = this.manager.getComponent("Position");
         this.obstacleImg = this.manager.getComponent("ImageComponent");
+        this.width = 100;
+        this.height = 500;
     }
 
     draw(ctx){
         if(this.obstacleImg.image.complete){
-            ctx.drawImage(this.obstacleImg.image, this.obstaclePosition.x, this.obstaclePosition.y, 100, 500);
+            ctx.drawImage(this.obstacleImg.image, this.obstaclePosition.x, this.obstaclePosition.y, this.width, this.height);
         } else {
             this.obstacleImg.image.onload = ()=>{
-                ctx.drawImage(this.obstacleImg.image, this.obstaclePosition.x, this.obstaclePosition.y, 200, 200);
+                ctx.drawImage(this.obstacleImg.image, this.obstaclePosition.x, this.obstaclePosition.y, this.width, this.height);
             }
         }
     }

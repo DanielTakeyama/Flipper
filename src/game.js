@@ -33,9 +33,15 @@ document.addEventListener("keydown", (event)=>{
 
 //Funções
 
-function checkColision(playerX, playerY, obstaculoX, obstaculoY){
-    if(playerX >= obstaculoX){
-
+function checkColision(playerX, playerW, playerY, playerH, obstaculoX, obstaculoW, obstaculoY, obstaculoH, canvasH){
+    if(playerX + playerW >= obstaculoX &&//Verifica se o lado direito do personagem é maior que o lado esquerdo do obstaculo
+        playerX <= obstaculoX + obstaculoW &&//Verifica se o lado esquerdo do personagem é menor que o lado esquerdo do obstaculo // Se essas 2 primeiras linhas forem verdadeira significa que colidiu no eixo X
+            playerY + playerH >= obstaculoY &&//Verifica se o lado inferior do personagem é maior que o lado superior do obstaculo
+                playerY <= obstaculoY + obstaculoH){//Verifica se o lado superior do personagem é menor que o lado inferior do obstaculo // Se esses 2 ultimas linhas forem verdadeira significa que colidiu no eixo Y
+        return true;//Se colidiu no eixo X e no eixo Y ao mesmo tempo, significa que o personagem bateu no obstaculo, dai retorna true para a variável gameOver
+    }
+    if(playerY >= (canvasH -50) || playerY <= (canvasH - canvasH)){
+        return true;
     }
 }
 
@@ -51,14 +57,12 @@ function initialize(ctx, canvas){
     player.update();
     obstaculo.update(canvas);
 
-    if(playerPos.y >= 700 || playerPos.y <= -120){//Se o player encostar no chão acaba o jogo
-        gameOver = true;
-    }
+    gameOver = checkColision(playerPos.x, player.width, playerPos.y, player.height, obstaculoPos.x, obstaculo.width, obstaculoPos.y, obstaculo.height, canvas.height);
 
     if(!gameOver){//Enquanto o player não colidiu com o chão e nem com nenhum obstaculo o jogo continue.
         requestAnimationFrame(()=> initialize(ctx, canvas));
     }
-    console.log(playerPos.y)
+
 }
 
 
