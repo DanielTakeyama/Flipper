@@ -57,3 +57,38 @@ README.md                  // Documentação do jogo
 
 ### Licença
 Este projeto está sob a Licença MIT.
+
+
+### Melhorias
+
+- Futuramente colocar no **src/entities/entity.js** um id retornado do banco de dados;
+
+## Padrões de Commits para serem seguidos
+
+### Adicionar uma nova funcionalidade:
+Formato: feat: <descrição>
+Exemplo: feat: adicionar componente de física para gravidade
+
+### Corrigir um bug:
+Formato: fix: <descrição>
+Exemplo: fix: corrigir erro ao adicionar componente duplicado
+
+### Alteração de estilo ou formatação (sem alterar a lógica):
+Formato: style: <descrição>
+Exemplo: style: ajustar indentação do código
+
+### Refatoração do código (sem alterar o comportamento):
+Formato: refactor: <descrição>
+Exemplo: refactor: refatorar função de cálculo de pontuação
+
+### Documentação:
+Formato: docs: <descrição>
+Exemplo: docs: atualizar README com instruções de execução
+
+### Alteração em arquivos de configuração:
+Formato: chore: <descrição>
+Exemplo: chore: atualizar configuração do Webpack
+
+### Testes:
+Formato: test: <descrição>
+Exemplo: test: adicionar testes para componentes da física
