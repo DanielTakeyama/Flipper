@@ -1,7 +1,12 @@
 //Managers
 import { PlayerManager } from './managers/player-manager.js';
 import { ScenaryManager } from './managers/scenery-manager.js';
-import { ObstaclesManager } from './managers/obstacles-manager.js';
+import { ObstaclesBottomManager } from './managers/obstacles-bottom-manager.js';
+import { ObstaclesTopManager } from './managers/obstacles-top-manager.js';
+import { ScoreManager } from './managers/score-manager.js';
+
+//Funções
+import { checkColision } from './utils/checkColision.js';
 
 //canvas
 const canvas = document.getElementById("canvas");
@@ -12,16 +17,22 @@ canvas.height = window.innerHeight;
 //Instancias
 const player = new PlayerManager();
 const cenario = new ScenaryManager();
-const obstaculo = new ObstaclesManager();
+const obstaculoBottom = new ObstaclesBottomManager();
+const obstaculoTop = new ObstaclesTopManager();
+const score = new ScoreManager();
 
-//Variáveis
+//Variáveis Globais
 let gameOver = false;
+let obstaculoPassado = false;
+
 //Variáveis do Player
 const playerPos = player.manager.getComponent("Position");
 const playerVel = player.manager.getComponent("Velocity");
-//Variáveis dos Obstaculos
-const obstaculoPos = obstaculo.manager.getComponent("Position");
 
+
+//Variáveis dos Obstaculos
+const obstaculoBottomPos = obstaculoBottom.manager.getComponent("Position");
+const obstaculoTopPos = obstaculoTop.manager.getComponent("Position");
 
 //Eventos
 document.addEventListener("keydown", (event)=>{
@@ -31,36 +42,38 @@ document.addEventListener("keydown", (event)=>{
     }
 });
 
+
+//Mobile
+document.addEventListener("touchstart", ()=>{
+    playerVel.velocity = -7;
+    playerPos.y -= 50;
+});
+
+
 //Funções
-
-function checkColision(playerX, playerY, obstaculoX, obstaculoY){
-    if(playerX >= obstaculoX){
-
-    }
-}
-
-
-
 function initialize(ctx, canvas){
     ctx.clearRect(0,0, canvas.width, canvas.height);//Limpa todo o canvas
     
     //Desenha os elementos do game
     cenario.draw(ctx, canvas.width, canvas.height);
-    obstaculo.draw(ctx);
-    player.spawn(ctx);
-    player.update();
-    obstaculo.update(canvas);
 
-    if(playerPos.y >= 700 || playerPos.y <= -120){//Se o player encostar no chão acaba o jogo
-        gameOver = true;
-    }
+    obstaculoTop.draw(ctx);
+    obstaculoBottom.draw(ctx);
+    score.draw(ctx);
+    player.spawn(ctx);
+
+    player.update();
+    obstaculoBottom.update(canvas);
+    obstaculoTop.update(canvas);
+    score.update(playerPos, obstaculoBottom, obstaculoBottomPos);
+    
+    gameOver = checkColision(playerPos.x, player.width, playerPos.y, player.height, obstaculoBottomPos.x, obstaculoBottom.width, obstaculoBottomPos.y, obstaculoBottom.height, obstaculoTopPos.x, obstaculoTop.width, obstaculoTopPos.y, obstaculoTop.height, canvas.height);
 
     if(!gameOver){//Enquanto o player não colidiu com o chão e nem com nenhum obstaculo o jogo continue.
         requestAnimationFrame(()=> initialize(ctx, canvas));
     }
-    console.log(playerPos.y)
-}
 
+}
 
 //Inicialização do Jogo
 initialize(ctx, canvas);
