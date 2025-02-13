@@ -7,7 +7,7 @@ import { ImageComponent } from '../ecm-components/image-component.js';
 export class ObstaclesTopManager{
     constructor(){
         this.manager = new Entity();
-        this.manager.addComponent(new Position(850,-450));
+        this.manager.addComponent(new Position(850,-250));
         this.manager.addComponent(new Velocity(5));
         this.manager.addComponent(new ImageComponent("../../assets/images/toppipe.png"));
         this.obstaclePosition = this.manager.getComponent("Position");
@@ -31,7 +31,7 @@ export class ObstaclesTopManager{
         const janelaCanvas = canvas.width;
         const janela = janelaCanvas - canvas.width;
         const minY = -450;
-        const maxY = -130;
+        const maxY = -200;
 
         if(this.obstaclePosition.x <= janela -100){
             this.obstaclePosition.x = janelaCanvas + 150;
