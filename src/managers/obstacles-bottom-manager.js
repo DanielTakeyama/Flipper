@@ -33,7 +33,7 @@ export class ObstaclesBottomManager{
         const minY = 650;
         const maxY = 420;
 
-        if(this.obstaclePosition.x <= janela -100){
+        if(this.obstaclePosition.x <= janela -110){
             this.obstaclePosition.x = janelaCanvas + 150;
             this.obstaclePosition.y = Math.floor(Math.random() * (minY - maxY) + maxY);
         }

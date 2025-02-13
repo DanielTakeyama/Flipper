@@ -3,6 +3,8 @@ import { PlayerManager } from './managers/player-manager.js';
 import { ScenaryManager } from './managers/scenery-manager.js';
 import { ObstaclesBottomManager } from './managers/obstacles-bottom-manager.js';
 import { ObstaclesTopManager } from './managers/obstacles-top-manager.js';
+import { ScoreManager } from './managers/score-manager.js';
+
 //Funções
 import { checkColision } from './utils/checkColision.js';
 
@@ -17,10 +19,11 @@ const player = new PlayerManager();
 const cenario = new ScenaryManager();
 const obstaculoBottom = new ObstaclesBottomManager();
 const obstaculoTop = new ObstaclesTopManager();
+const score = new ScoreManager();
 
-//Variáveis
+//Variáveis Globais
 let gameOver = false;
-let score = 0;
+let obstaculoPassado = false;
 
 //Variáveis do Player
 const playerPos = player.manager.getComponent("Position");
@@ -48,15 +51,6 @@ document.addEventListener("touchstart", ()=>{
 
 
 //Funções
-
-function drawScore(ctx, score){
-    ctx.font = "24px Arial";
-    ctx.fillStyle = "white";
-    ctx.fillText(`Score: ${score}`, 10, 30);
-}
-
-
-
 function initialize(ctx, canvas){
     ctx.clearRect(0,0, canvas.width, canvas.height);//Limpa todo o canvas
     
@@ -65,13 +59,14 @@ function initialize(ctx, canvas){
 
     obstaculoTop.draw(ctx);
     obstaculoBottom.draw(ctx);
+    score.draw(ctx);
     player.spawn(ctx);
-    drawScore(ctx, score);
 
     player.update();
     obstaculoBottom.update(canvas);
     obstaculoTop.update(canvas);
-
+    score.update(playerPos, obstaculoBottom, obstaculoBottomPos);
+    
     gameOver = checkColision(playerPos.x, player.width, playerPos.y, player.height, obstaculoBottomPos.x, obstaculoBottom.width, obstaculoBottomPos.y, obstaculoBottom.height, obstaculoTopPos.x, obstaculoTop.width, obstaculoTopPos.y, obstaculoTop.height, canvas.height);
 
     if(!gameOver){//Enquanto o player não colidiu com o chão e nem com nenhum obstaculo o jogo continue.
