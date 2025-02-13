@@ -4,7 +4,7 @@ import { Velocity } from '../ecm-components/velocity.js';
 import { ImageComponent } from '../ecm-components/image-component.js';
 
 
-export class ObstaclesManager{
+export class ObstaclesBottomManager{
     constructor(){
         this.manager = new Entity();
         this.manager.addComponent(new Position(850,420));
