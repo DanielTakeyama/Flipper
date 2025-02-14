@@ -63,7 +63,7 @@ function initialize(ctx, canvas){
     obstaculoBottom.update(canvas, score.valor);
     obstaculoTop.update(canvas, score.valor);
     score.update(playerPos, obstaculoBottom, obstaculoBottomPos);
-    console.log(obstaculoBottom.velocidade.velocity);
+    
     gameOver = checkColision(playerPos.x, player.width, playerPos.y, player.height, obstaculoBottomPos.x, obstaculoBottom.width, obstaculoBottomPos.y, obstaculoBottom.height, obstaculoTopPos.x, obstaculoTop.width, obstaculoTopPos.y, obstaculoTop.height, canvas.height);
     if(!gameOver){//Enquanto o player não colidiu com o chão e nem com nenhum obstaculo o jogo continue.
         requestAnimationFrame(()=> initialize(ctx, canvas));
