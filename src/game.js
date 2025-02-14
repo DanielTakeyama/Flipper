@@ -23,7 +23,6 @@ const score = new ScoreManager();
 
 //Variáveis Globais
 let gameOver = false;
-let obstaculoPassado = false;
 
 //Variáveis do Player
 const playerPos = player.manager.getComponent("Position");
@@ -42,9 +41,7 @@ document.addEventListener("keydown", (event)=>{
     }
 });
 
-
-//Mobile
-document.addEventListener("touchstart", ()=>{
+document.addEventListener("touchstart", ()=>{//Mobile
     playerVel.velocity = -7;
     playerPos.y -= 50;
 });
@@ -63,12 +60,11 @@ function initialize(ctx, canvas){
     player.spawn(ctx);
 
     player.update();
-    obstaculoBottom.update(canvas);
-    obstaculoTop.update(canvas);
+    obstaculoBottom.update(canvas, score.valor);
+    obstaculoTop.update(canvas, score.valor);
     score.update(playerPos, obstaculoBottom, obstaculoBottomPos);
     
     gameOver = checkColision(playerPos.x, player.width, playerPos.y, player.height, obstaculoBottomPos.x, obstaculoBottom.width, obstaculoBottomPos.y, obstaculoBottom.height, obstaculoTopPos.x, obstaculoTop.width, obstaculoTopPos.y, obstaculoTop.height, canvas.height);
-
     if(!gameOver){//Enquanto o player não colidiu com o chão e nem com nenhum obstaculo o jogo continue.
         requestAnimationFrame(()=> initialize(ctx, canvas));
     }
