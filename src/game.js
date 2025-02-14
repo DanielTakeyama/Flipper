@@ -60,8 +60,6 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
     }
-    //Inicialização
-    start.initialScreen(ctx, canvas.width, canvas.height);
 
     //Eventos de Inicialização
     document.addEventListener("touchstart", ()=>{//Mobile
@@ -88,5 +86,6 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     });
 
-    
+    //Inicialização
+    start.initialScreen(ctx, canvas.width, canvas.height);
 });
