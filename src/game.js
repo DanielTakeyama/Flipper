@@ -4,6 +4,7 @@ import { ScenaryManager } from './managers/scenery-manager.js';
 import { ObstaclesBottomManager } from './managers/obstacles-bottom-manager.js';
 import { ObstaclesTopManager } from './managers/obstacles-top-manager.js';
 import { ScoreManager } from './managers/score-manager.js';
+import { StartManager } from './managers/start-manager.js';
 
 //Funções
 import { checkColision } from './utils/checkColision.js';
@@ -20,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const cenario = new ScenaryManager();
     const obstaculoBottom = new ObstaclesBottomManager();
     const obstaculoTop = new ObstaclesTopManager();
-    const score = new ScoreManager();
+    const score = new ScoreManager(); 
+    const start = new StartManager();
 
     //Variáveis Globais
     let gameOver = false;
@@ -59,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     }
     //Inicialização
-    
+    start.initialScreen(ctx, canvas.width, canvas.height);
 
     //Eventos de Inicialização
     document.addEventListener("touchstart", ()=>{//Mobile
