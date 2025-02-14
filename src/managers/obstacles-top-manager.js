@@ -8,12 +8,14 @@ export class ObstaclesTopManager{
     constructor(){
         this.manager = new Entity();
         this.manager.addComponent(new Position(850,-250));
-        this.manager.addComponent(new Velocity(5));
+        this.manager.addComponent(new Velocity(10));
         this.manager.addComponent(new ImageComponent("../../assets/images/toppipe.png"));
         this.obstaclePosition = this.manager.getComponent("Position");
         this.obstacleImg = this.manager.getComponent("ImageComponent");
+        this.velocidade = this.manager.getComponent("Velocity");
         this.width = 100;
         this.height = 500;
+        this.ultimoScoreAumentado = 0;
     }
 
     draw(ctx){
@@ -26,14 +28,19 @@ export class ObstaclesTopManager{
         }
     }
 
-    update(canvas){
-        this.obstaclePosition.x -= 10;
+    update(canvas, score){
+        this.obstaclePosition.x -= this.velocidade.velocity;
+        
+        if(score % 5 === 0 && score !== 0 && score !== this.ultimoScoreAumentado){
+            this.velocidade.velocity += 5;
+            this.ultimoScoreAumentado = score;        
+        }
         const janelaCanvas = canvas.width;
         const janela = janelaCanvas - canvas.width;
         const minY = -450;
         const maxY = -200;
 
-        if(this.obstaclePosition.x <= janela -110){
+        if(this.obstaclePosition.x + this.width <= 0- this.velocidade.velocity){
             this.obstaclePosition.x = janelaCanvas + 150;
             this.obstaclePosition.y = Math.floor(Math.random() * (minY - maxY) + maxY);
         }
