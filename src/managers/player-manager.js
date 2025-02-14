@@ -8,7 +8,7 @@ import { ImageComponent } from '../ecm-components/image-component.js';
 export class PlayerManager{
     constructor(){
         this.manager = new Entity();
-        this.manager.addComponent(new Position(50,50));
+        this.manager.addComponent(new Position(50,200));
         this.manager.addComponent(new Gravity(0.5));
         this.manager.addComponent(new Velocity(5));
         this.manager.addComponent(new ImageComponent("../../assets/images/flappybird.png"));
