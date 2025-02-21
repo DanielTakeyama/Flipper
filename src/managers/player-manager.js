@@ -11,9 +11,9 @@ export class PlayerManager{
         this.manager.addComponent(new Position(50,200));
         this.manager.addComponent(new Gravity(0.5));
         this.manager.addComponent(new Velocity(5));
-        this.manager.addComponent(new ImageComponent("../../assets/images/flappybird.png"));
-        this.width = 70;
-        this.height = 60;
+        this.manager.addComponent(new ImageComponent("../../assets/images/player.png"));
+        this.width = 110;//70
+        this.height = 100;//60
     }
 
     spawn(ctx){

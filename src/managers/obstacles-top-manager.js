@@ -7,7 +7,7 @@ import { ImageComponent } from '../ecm-components/image-component.js';
 export class ObstaclesTopManager{
     constructor(){
         this.manager = new Entity();
-        this.manager.addComponent(new Position(850,-250));
+        this.manager.addComponent(new Position(1250,-350));//850
         this.manager.addComponent(new Velocity(10));
         this.manager.addComponent(new ImageComponent("../../assets/images/toppipe.png"));
         this.obstaclePosition = this.manager.getComponent("Position");
