@@ -20,6 +20,9 @@ Flipper é um jogo simples e divertido, inspirado no clássico *Flappy Bird*. Es
 3. Após isso é só clicar no botão "Start Game" que o jogo será iniciado.
 4. Para controlar o Player, basta apertar a tecla "Espaço" se estiver no Computador ou "Tocar" na tela se estiver utilizando um celular.
 
+### Não quer clonar o repositório ?
+- Basta acessar o site **https://www.hydrabox.com.br/flipper/** e jogar!
+
 ![Tela Inicial](assets/images/initial-screen.png)
 
 ## Arquitetura
