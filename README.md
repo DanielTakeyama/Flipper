@@ -60,21 +60,6 @@ README.md                  // Documentação do jogo
 - **`/ecm-components`**: Contém os componentes responsáveis pela lógica de interação do jogo, como o controle do movimento do personagem,obstáculos, gravidade e etc...
 - **`game.js`**: O coração do jogo, que gerencia toda a lógica e o fluxo do jogo, como detecção de colisões, pontuação e fim do jogo.
 - **`index.html`**: O ponto de entrada do jogo, onde a interface do navegador é configurada e inicializada.
-  
-## Como Rodar o Jogo
-
-### Requisitos
-
-1. Um navegador moderno (Google Chrome, Firefox, etc.).
-2. Arquivos do jogo localmente ou acessíveis por meio de um servidor web.
-
-### Passos para Execução
-
-1. Clone o repositório:
-   git clone <URL_DO_REPOSITORIO>
-   cd Flipper
-
-2. Abra o arquivo index.html em seu navegador ou utilize um servidor local (como o http-server) para rodar o jogo.
 
 ### Licença
 - Este projeto está sob a Licença MIT.
